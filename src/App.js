@@ -38,7 +38,7 @@ const AllArticles = () => {
   const contract = useSelector(({ contract }) => contract)
   useEffect(() => {
     if (contract) {
-      console.log(contract.methods.ids(0).call())
+      console.log(contract.methods.articleContent().call())
     }
   }, [contract, setArticles])
   return <div>{articles.map(article => article)}</div>

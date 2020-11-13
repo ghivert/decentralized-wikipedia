@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: MIT
 pragma solidity 0.5.16;
 
 contract Wikipedia {
@@ -6,20 +5,16 @@ contract Wikipedia {
     string content;
   }
 
-  uint[] public ids;
   mapping (uint => Article) public articlesById;
 
   constructor() public {
-    ids.push(12);
+    Article memory newArticle = Article("Hello");
+    articlesById[0] = newArticle;
   }
 
-  function getAllIds() public view returns (uint[] memory) {
-    return [1, 2, 3];
-    uint[] memory temp = new uint[](ids.length);
-    for (uint i = 0; i < ids.length; i++) {
-      temp[i] = ids[i];
-    }
-    return temp;
+  function articleContent() public view returns (string memory) {
+    return articlesById[0].content;
   }
+
   // Write your code here.
 }
