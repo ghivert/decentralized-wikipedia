@@ -84,3 +84,4 @@ The program should be able to:
 Bonus:
 
 - Keep history of modifications and display it in the app.
+- Integrate the DApp with [Fortmatic](https://fortmatic.com/).
