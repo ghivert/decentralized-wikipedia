@@ -1,19 +1,26 @@
-pragma solidity 0.5.16;
+pragma solidity ^0.5.0;
 
 contract Wikipedia {
   struct Article {
     string content;
   }
 
+  uint[] public ids;
   mapping (uint => Article) public articlesById;
 
   constructor() public {
-    Article memory newArticle = Article("Hello");
-    articlesById[0] = newArticle;
+    uint index = 0;
+    ids.push(index);
+    Article memory newArticle = Article("This is your first article in your contract");
+    articlesById[index] = newArticle;
   }
 
-  function articleContent() public view returns (string memory) {
-    return articlesById[0].content;
+  function articleContent(uint index) public view returns (string memory) {
+    return articlesById[index].content;
+  }
+
+  function getAllIds() public view returns (uint[] memory) {
+    return ids;
   }
 
   // Write your code here.
