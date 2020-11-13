@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Decentralized Wikipedia
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the DAAR project. The idea will be to implement a complete Wikipedia
+in a decentralized way, on Ethereum. This will have cool side effects, like not
+be forced to pay for servers.
 
-## Available Scripts
+# Installation
 
-In the project directory, you can run:
+```bash
+# With HTTPS
+git clone https://github.com/ghivert/decentralized-wikipedia.git
+# Or with SSH
+git clone git@github.com:ghivert/decentralized-wikipedia.git
+```
 
-### `yarn start`
+You’ll need to install dependencies. You’ll need [`Ganache`](https://www.trufflesuite.com/ganache), [`Node.js`](https://nodejs.org/en/) and [`NPM`](https://www.npmjs.com/) or [`Yarn`](https://yarnpkg.com/). You’ll need to install [`Metamask`](https://metamask.io/) as well to communicate with your blockchain.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `Ganache` is a local blockchain development, to iterate quickly and avoiding wasting Ether during development.
+- `Node.js` is used to build the frontend and running `truffle`, which is a utility to deploy contracts.
+- `NPM` or `Yarn` is a package manager, to install dependencies for your frontend development. Yarn is recommended.
+- `Metamask` is a in-browser utility to interact with decentralized applications.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Some setup
 
-### `yarn test`
+Once everything is installed, launch `Ganache`. Create a new workspace, give it a name, and accept. You should have a local blockchain running in local. Now you can copy the mnemonic phrase Ganache generated, open Metamask, and when it asks to import a mnemonic, paste the mnemonic. Create the password of your choice and that’s fine.
+Now you can connect Metamask to the blockchain. To do this, add a network by clicking on `main network` and `personalized RPC`. Here, you should be able to add a network.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Ganache Config](public/ganache-config.png)
 
-### `yarn build`
+Once you have done it, you’re connected to the Ganache blockchain!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Run the frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install the dependencies.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# Yarn users
+yarn
+# NPM users
+npm install
+```
 
-### `yarn eject`
+Compile the contracts.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+# Yarn users
+yarn contracts:build
+# NPM users
+npm run contracts:build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create a symlink for your OS.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# Windows
+mklink /D src\build "..\build"
+move /Y truffle.js truffle-config.js
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Unix and macOS
+ln -s ../build ./src/build
+```
 
-## Learn More
+Run the frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Yarn users
+yarn start
+# NPM users
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You’re good to go!
 
-### Code Splitting
+# Subject
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Implement a Wikipedia from scratch in Solidity.
 
-### Analyzing the Bundle Size
+The program should be able to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Read an article by its ID (an uint).
+- Someone should be able to submit a new article with ID and content.
+- Someone should be able to update an article.
 
-### Making a Progressive Web App
+Bonus:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Keep history of modifications and display it in the app.

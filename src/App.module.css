@@ -1,0 +1,29 @@
+.links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.app {
+  max-width: 700px;
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+  padding: 24px;
+}
+
+.editable {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 0 12px;
+}
+
+.subTitle {
+  font-weight: 600;
+}
+
+.mediumWrapper {
+  margin: 24px 0;
+}

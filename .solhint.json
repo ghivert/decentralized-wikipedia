@@ -1,0 +1,7 @@
+{
+  "extends": "solhint:default",
+  "rules": {
+    "indent": 2,
+    "two-lines-top-level-separator": false
+  }
+}
